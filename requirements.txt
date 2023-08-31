@@ -1,0 +1,7 @@
+discord-py==1.7.3
+discord-py-slash-command==3.0.1
+discord-py-interactions==3.0.2
+crcmod>=1.7
+python-dotenv>=0.17
+pyyaml>=6.0
+requests>=2.28.2
