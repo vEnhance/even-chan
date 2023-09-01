@@ -17,7 +17,7 @@ load_dotenv()
 MAX_EMBED_LENGTH = 1000
 
 SOURCE_REGEX = re.compile(
-    r"(USAMO|JMO|IMO|Shortlist|ELMO|USA TST|TSTST|RMM) [0-9]{4}[ \/][ACGN]?[0-9]+"
+    r"(USAMO|JMO|IMO|Shortlist|ELMO|USA TST|TSTST|RMM|EGMO) [0-9]{4}[ \/][ACGN]?[0-9]+"
 )
 
 # https://stackoverflow.com/questions/61150145/remove-line-breaks-but-not-double-line-breaks-python
