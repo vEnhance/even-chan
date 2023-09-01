@@ -17,4 +17,6 @@ Currently, the following contests are supported:
 - [USAMO and JMO](https://web.evanchen.cc/problems.html#usamo) (USA)
 - [USEMO](https://web.evanchen.cc/usemo.html)
 
-May add in more stuff later.
+May add in more stuff later. Right now these are the contests that are pretty
+well fleshed out in Evan's database (i.e. Evan has done most problems from these
+contests in recent years).
