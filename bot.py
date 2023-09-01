@@ -14,6 +14,7 @@ from von import api
 
 load_dotenv()
 
+MAX_EMBED_LENGTH = 1000
 
 SOURCE_REGEX = re.compile(
     r"(USAMO|JMO|IMO|Shortlist|ELMO|USA TST|TSTST|RMM) [0-9]{4}[ \/][ACGN]?[0-9]+"
@@ -32,9 +33,9 @@ async def post_problem(source: str, trigger: Union[SlashContext, Message]):
     entry = api.get(source)
     statement = entry.bodies[0]
     statement = SINGLE_NEWLINE_DELETER.sub(" ", statement)
-    if len(statement) > 500:
-        statement = statement[:500]
-        if " " in statement[:500]:
+    if len(statement) > MAX_EMBED_LENGTH:
+        statement = statement[:MAX_EMBED_LENGTH]
+        if " " in statement[:MAX_EMBED_LENGTH]:
             i = statement.rindex(" ")
             statement = statement[:i] + "..."
         else:
