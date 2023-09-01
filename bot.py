@@ -20,8 +20,28 @@ SOURCE_REGEX = re.compile(
     r"(USAMO|JMO|IMO|Shortlist|ELMO|USA TST|TSTST|RMM|EGMO|USEMO) [0-9]{4}[ \/][ACGN]?[0-9]+"
 )
 
-# https://stackoverflow.com/questions/61150145/remove-line-breaks-but-not-double-line-breaks-python
-SINGLE_NEWLINE_DELETER = re.compile(r"(?<=[A-Za-z.:,\$ ]{2})\n(?!\n)")
+
+def reformat_whitespace(s: str) -> str:
+    lines: list[str] = s.splitlines()
+    out = ""
+    for i, line in enumerate(lines):
+        line = line.strip()
+        if i == 0:
+            out += line
+        elif line.startswith("\\"):
+            if not out.endswith("\n"):
+                out += "\n"
+            out += line
+            if line.startswith(r"\begin") or line.startswith(r"\end"):
+                out += "\n"
+        elif line == "":
+            out += "\n"
+        elif out.endswith("\n"):
+            out += line
+        else:
+            out += " " + line
+
+    return out.strip()
 
 
 async def post_problem(source: str, trigger: Union[SlashContext, Message]):
@@ -31,8 +51,7 @@ async def post_problem(source: str, trigger: Union[SlashContext, Message]):
         target = trigger.channel
 
     entry = api.get(source)
-    statement = entry.bodies[0]
-    statement = SINGLE_NEWLINE_DELETER.sub(" ", statement)
+    statement = reformat_whitespace(entry.bodies[0])
     if len(statement) > MAX_EMBED_LENGTH:
         statement = statement[:MAX_EMBED_LENGTH]
         if " " in statement[:MAX_EMBED_LENGTH]:
