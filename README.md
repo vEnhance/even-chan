@@ -15,5 +15,6 @@ Currently, the following contests are supported:
 - [TST](https://web.evanchen.cc/problems.html#tst)
 - [TSTST](https://web.evanchen.cc/problems.html#tstst)
 - [USAMO and JMO](https://web.evanchen.cc/problems.html#usamo) (USA)
+- [USEMO](https://web.evanchen.cc/usemo.html)
 
 May add in more stuff later.
